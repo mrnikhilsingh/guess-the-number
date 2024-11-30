@@ -86,3 +86,25 @@ def play_game(difficulty, max_attempts, secret_number, range_start, range_end):
             print("Invalid input! Please enter a valid number.")
     
     return score  # Return the player's score
+
+
+def number_guessing_game():
+    """
+    Main function to coordinate the game. Handles setup, gameplay, and replay options.
+    """
+    while True:
+        # Set up the game by calling the setup function
+        difficulty, max_attempts, secret_number, range_start, range_end = game_setup()
+        
+        # Start the gameplay
+        score = play_game(difficulty, max_attempts, secret_number, range_start, range_end)
+
+        # Ask the player if they want to replay the game
+        replay = input("Would you like to play again? (yes/no): ").strip().lower()
+        if replay not in ['yes', 'y']:
+            print("Thanks for playing! Goodbye.")
+            break
+
+# Run the game only if this script is executed directly
+if _name_ == "_main_":
+    number_guessing_game()
