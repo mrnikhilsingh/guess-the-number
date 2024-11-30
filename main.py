@@ -106,5 +106,5 @@ def number_guessing_game():
             break
 
 # Run the game only if this script is executed directly
-if _name_ == "_main_":
+if __name__ == "__main__":
     number_guessing_game()
