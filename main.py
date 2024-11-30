@@ -37,4 +37,52 @@ def game_setup():
     secret_number = random.randint(range_start, range_end)
     return difficulty, max_attempts, secret_number, range_start, range_end
 
-print(game_setup())
+def play_game(difficulty, max_attempts, secret_number, range_start, range_end):
+    """
+    Handles the main gameplay loop where the player guesses the number.
+    Parameters:
+        difficulty (int): The chosen difficulty level.
+        max_attempts (int or None): Maximum attempts allowed, or None for unlimited.
+        secret_number (int): The randomly generated secret number.
+        range_start (int): The start of the range for the secret number.
+        range_end (int): The end of the range for the secret number.
+    Returns:
+        score (int): The player's score based on performance.
+    """
+    attempts = 0  # Keep track of the number of attempts
+    score = 0  # Initialize the player's score
+
+    print(f"\nI have chosen a number between {range_start} and {range_end}. Can you guess it?")
+    if max_attempts:
+        print(f"You have {max_attempts} attempts. Good luck!")
+
+    while True:
+        try:
+            # Prompt the player to make a guess
+            guess = int(input(f"Attempt {attempts + 1}: Enter your guess: "))
+            attempts += 1  # Increment the attempt count
+            
+            # Check if the guess is within the valid range
+            if guess < range_start or guess > range_end:
+                print(f"Please guess a number between {range_start} and {range_end}.")
+            elif guess < secret_number:
+                print("Too low! Try again.")  # Provide feedback for a low guess
+            elif guess > secret_number:
+                print("Too high! Try again.")  # Provide feedback for a high guess
+            else:
+                # The player guessed correctly
+                print(f"🎉 Congratulations! You guessed the number {secret_number} in {attempts} attempts.")
+                score += (max_attempts - attempts + 1) if max_attempts else 100 // attempts  # Calculate score
+                print(f"Your score: {score}")
+                break
+
+            # End the game if the player has used all attempts
+            if max_attempts and attempts >= max_attempts:
+                print(f"Game Over! You've used all your {max_attempts} attempts. The number was {secret_number}.")
+                break
+
+        except ValueError:
+            # Handle non-numeric input during guesses
+            print("Invalid input! Please enter a valid number.")
+    
+    return score  # Return the player's score
