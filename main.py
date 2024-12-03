@@ -11,7 +11,7 @@ def game_setup():
         range_start (int): The start of the range for the secret number.
         range_end (int): The end of the range for the secret number.
     """
-    print("Welcome to the Enhanced Number Guessing Game!")
+    print("Welcome to the Guess The Number Game!")
     print("Choose a difficulty level:")
     print("1. Easy (Unlimited attempts)")
     print("2. Medium (10 attempts)")
@@ -88,7 +88,7 @@ def play_game(difficulty, max_attempts, secret_number, range_start, range_end):
     return score  # Return the player's score
 
 
-def number_guessing_game():
+def guess_the_number():
     """
     Main function to coordinate the game. Handles setup, gameplay, and replay options.
     """
@@ -107,4 +107,4 @@ def number_guessing_game():
 
 # Run the game only if this script is executed directly
 if __name__ == "__main__":
-    number_guessing_game()
+    guess_the_number()
